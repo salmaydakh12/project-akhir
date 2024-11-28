@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class aplikasi {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int targetHarian = 2000;
+        int panjangHari = 7;
+        String[] namaHari = {"Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"};
+
+        System.out.println("SELAMAT DATANG DI APLIKASI PENGONTROL KONSUMSI AIR MINERAL HARIAN");
+
+        for (int i = 0; i < panjangHari; i++) {
+            int konsumsiAir;
+            while (true) {
+                System.out.print("Masukkan jumlah air yang dikonsumsi pada hari " + namaHari[i] + " (mililiter): ");
+                konsumsiAir = scanner.nextInt();
+                if (konsumsiAir >= 0) {
+                    break; 
+                } 
+            }
+            harian(namaHari[i], konsumsiAir, targetHarian);
+
+            if (i < panjangHari - 1) { 
+                System.out.print("Apakah ingin melanjutkan ke hari berikutnya? (ketik 1 untuk lanjut, 0 untuk berhenti): ");
+                int lanjut = scanner.nextInt();
+                if (lanjut != 1) {
+                    System.out.println("Program berhenti di hari " + namaHari[i]);
+                    break;
+                }
+            }
+        }
+
+        scanner.close();
+        System.out.println("Terima kasih telah menggunakan aplikasi ini!");
+    }
+
+    public static void harian(String hari, int konsumsiAir, int targetHarian) {
+        System.out.print("Hari " + hari + ": ");
+        if (konsumsiAir >= targetHarian) {
+            System.out.println("Yeayyy kamu berhasil mencapai target hari ini!");
+        } else {
+            System.out.println("Wah, sayang sekali kamu kurang mengonsumsi air hari ini!");
+        }
+    }
+}
